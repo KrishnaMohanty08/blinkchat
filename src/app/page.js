@@ -1,11 +1,18 @@
-import Navbar from '@/src/components/navbars'
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar'
+import Feature from '@/components/Feature';
+import Contactus from '@/components/Contactus';
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main>
-        <h1>BlinkChat</h1>
-        <Navbar/>
+    <div style={{ minHeight: '100vh', background: '#090b0a', color: '#f4f9f7', fontFamily: 'Inter, sans-serif', display: 'flex', flexDirection: 'column' }}>
+      <Navbar />
+      <main style={{ flex: 1, padding: '2rem' }}>
+        {/* Your main content */}
       </main>
+      <div className="grow"><Feature/></div>
+      <div className="w-auto"><Contactus/></div>
+      <Footer />
     </div>
   );
 }
+

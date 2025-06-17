@@ -8,4 +8,4 @@ const Feature = () => {
   )
 }
 
-export default feature
+export default Feature

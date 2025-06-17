@@ -1,11 +1,20 @@
-import React from 'react'
+// Footer.js
+import React from 'react';
 
-const Footer = () => {
+const footerStyle = {
+  background: '#090b0a',
+  color: '#88efc3',
+  fontFamily: 'Inter, sans-serif',
+  textAlign: 'center',
+  padding: '.6rem 0',
+  borderTop: '2px solid #3ffeab',
+  marginTop: 'auto',
+};
+
+export default function Footer() {
   return (
-    <div>
-      
-    </div>
-  )
+    <footer style={footerStyle}>
+      <p>&copy; {new Date().getFullYear()} MyApp. All rights reserved.</p>
+    </footer>
+  );
 }
-
-export default Footer
