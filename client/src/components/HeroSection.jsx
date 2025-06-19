@@ -5,13 +5,6 @@ import Link from "next/link";
 const HeroSection = () => {
   return (
     <div className="relative min-h-screen flex flex-col justify-start items-stretch overflow-x-hidden">
-      {/* Full-page background */}
-      <div className="fixed inset-0 -z-10 bg-black overflow-hidden">
-        {/* Green blurred shape */}
-        <div className="absolute top-[-12%] left-[-10%] w-[120vw] h-[60vh] rounded-full bg-green-700 opacity-40 blur-[120px]" />
-        {/* Optional: add more blurred shapes for depth */}
-        <div className="absolute bottom-[-10%] right-[-10%] w-[80vw] h-[40vh] rounded-full bg-green-500 opacity-20 blur-[100px]" />
-      </div>
 
       {/* Hero Section */}
       <section className="mt-36 text-center px-4">
@@ -35,7 +28,7 @@ const HeroSection = () => {
 
       {/* Features Section */}
       <section
-        id="feature"
+        id="#features"
         className="flex flex-col md:flex-row gap-6 mt-18 m-4 justify-between"
       >
         {/* Feature 1: Real-Time Messaging */}

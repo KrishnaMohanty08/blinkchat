@@ -1,7 +1,7 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
-// Color palette
 const COLORS = {
   background: '#090b0a',
   text: '#f4f9f7',
@@ -57,8 +57,6 @@ const styles = {
     borderRadius: '6px',
     background: 'none',
     transition: 'background 0.3s, color 0.3s, box-shadow 0.3s',
-    position: 'relative',
-    overflow: 'hidden',
   },
   linkHover: {
     background: `linear-gradient(90deg, ${COLORS.primary} 40%, ${COLORS.accent} 100%)`,
@@ -96,27 +94,18 @@ const styles = {
     borderRadius: '2px',
     transition: 'all 0.3s',
   },
-  // Responsive
-  '@media (maxWidth: 700px)': {
-    navLinks: {
-      display: 'none',
-    },
-    hamburger: {
-      display: 'flex',
-    },
-    mobileMenu: {
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'absolute',
-      top: '100%',
-      right: 0,
-      background: COLORS.background,
-      boxShadow: `0 8px 24px 0 ${COLORS.secondary}22`,
-      borderRadius: '0 0 8px 8px',
-      padding: '1rem 2rem',
-      zIndex: 20,
-      gap: '1.2rem',
-    },
+  mobileMenu: {
+    flexDirection: 'column',
+    position: 'absolute',
+    top: '100%',
+    right: 0,
+    background: COLORS.background,
+    boxShadow: `0 8px 24px 0 ${COLORS.secondary}22`,
+    borderRadius: '0 0 8px 8px',
+    padding: '1rem 2rem',
+    zIndex: 20,
+    gap: '1.2rem',
+    display: 'flex',
   },
 };
 
@@ -128,11 +117,17 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const [hovered, setHovered] = React.useState(null);
-  const [btnHovered, setBtnHovered] = React.useState(false);
+  const [hovered, setHovered] = useState(null);
+  const [btnHovered, setBtnHovered] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Responsive: simple inline styles for demo; for production, use CSS-in-JS library or CSS modules
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 700);
+    checkMobile(); // on mount
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <nav style={styles.navbar}>
@@ -140,39 +135,43 @@ export default function Navbar() {
         BlinkChat
         <span style={styles.logoUnderline}></span>
       </div>
+
       {/* Desktop Links */}
-      <div style={{ ...styles.navLinks, ...(window.innerWidth < 700 ? { display: 'none' } : {}) }}>
-        {NAV_LINKS.map((link, i) => (
-          <a
-            key={link.href}
-            href={link.href}
-            style={hovered === i ? { ...styles.link, ...styles.linkHover } : styles.link}
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
+      {!isMobile && (
+        <div style={styles.navLinks}>
+          {NAV_LINKS.map((link, i) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              style={hovered === i ? { ...styles.link, ...styles.linkHover } : styles.link}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <button
+            style={btnHovered ? { ...styles.button, ...styles.buttonHover } : styles.button}
+            onMouseEnter={() => setBtnHovered(true)}
+            onMouseLeave={() => setBtnHovered(false)}
           >
-            {link.label}
-          </a>
-        ))}
-        <button
-          style={btnHovered ? { ...styles.button, ...styles.buttonHover } : styles.button}
-          onMouseEnter={() => setBtnHovered(true)}
-          onMouseLeave={() => setBtnHovered(false)}
-        >
-          Sign Up
-        </button>
-      </div>
-      {/* Hamburger for mobile */}
-      <div
-        style={{ ...styles.hamburger, ...(window.innerWidth < 700 ? { display: 'flex' } : {}) }}
-        onClick={() => setMobileOpen((open) => !open)}
-      >
-        <div style={styles.bar}></div>
-        <div style={styles.bar}></div>
-        <div style={styles.bar}></div>
-      </div>
+            Sign Up
+          </button>
+        </div>
+      )}
+
+      {/* Hamburger */}
+      {isMobile && (
+        <div style={styles.hamburger} onClick={() => setMobileOpen((open) => !open)}>
+          <div style={styles.bar}></div>
+          <div style={styles.bar}></div>
+          <div style={styles.bar}></div>
+        </div>
+      )}
+
       {/* Mobile Menu */}
-      {mobileOpen && (
-        <div style={styles['@media (maxWidth: 700px)'].mobileMenu}>
+      {isMobile && mobileOpen && (
+        <div style={styles.mobileMenu}>
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
