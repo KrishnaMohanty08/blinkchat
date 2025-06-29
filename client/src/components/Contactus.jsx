@@ -1,29 +1,25 @@
 "use client"
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { Box, TextField, Button, Alert } from "@mui/material";
 
+
 export default function Contact() {
   const {
-    control,
+    register,
     handleSubmit,
-    setValue,
+    reset,
     formState: { errors },
   } = useForm();
 
   const [submitted, setSubmitted] = useState(false);
 
-  const submitBtn = () => {
-    setValue("Name", "");
-    setValue("Email", "");
-    setValue("Subject", "");
-  };
 
   useEffect(() => {
     if (submitted) {
       const timer = setTimeout(() => {
         setSubmitted(false);
-        submitBtn();
+        reset();
       }, 1000);
 
       return () => clearTimeout(timer);
@@ -61,42 +57,13 @@ export default function Contact() {
           autoComplete="off"
           className="flex flex-col items-center"
         >
-          <Controller
-            name="Name"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <TextField {...field} label="Name" sx={{ width: "300px" }} />
-            )}
-          />
-          <Controller
-            name="Email"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Email"
-                placeholder="example@example.com"
-                sx={{ width: "300px" }}
-              />
-            )}
-          />
-          <Controller
-            name="Subject"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Subject"
-                multiline
-                rows={4}
-                sx={{ width: "300px" }}
-              />
-            )}
-          />
-
+          <TextField {...register("name",{required:true})} label="Name"  sx={{ width: "300px", mb: 2 }}>
+          </TextField>
+          <TextField {...register("email",{required:true})} label="Email"  sx={{ width: "300px", mb: 2 }}>
+          </TextField>
+          <TextField multiline
+            rows={4} {...register("message",{required:true})} label="message"  sx={{ width: "300px", mb: 2 }}>
+          </TextField>
           <Button type="submit" variant="contained" sx={{ mt: 2 }}>
             Submit
           </Button>
@@ -104,7 +71,7 @@ export default function Contact() {
 
         {submitted && (
           <Alert
-            icon={<CheckIcon fontSize="inherit" />}
+            
             severity="success"
             sx={{ mt: 2 }}
           >
