@@ -31,11 +31,14 @@ const io=new Server(server,{
 })
 handleSocket(io);
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    server.listen(port, () => {
+// mongoose.connect(process.env.MONGO_URI)
+//   .then(() => {
+//     server.listen(port, () => {
+//       console.log(`Server running on http://localhost:${port}`);
+//     });
+//   })
+//   .catch(err => console.error('MongoDB connection error:', err))
+  server.listen(port, () => {
       console.log(`Server running on http://localhost:${port}`);
     });
-  })
-  .catch(err => console.error('MongoDB connection error:', err))
 
