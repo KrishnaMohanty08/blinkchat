@@ -1,29 +1,75 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import dynamic from 'next/dynamic'
 import Button from './ui/Button'
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react'
-
-// Dynamically import 3D scene to avoid SSR issues
-const Scene3D = dynamic(() => import('./3D/Scene3D'), { 
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="w-32 h-32 border-4 border-neon-blue border-t-transparent rounded-full animate-spin" />
-    </div>
-  )
-})
 
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-bg via-dark-bg to-transparent" />
+      {/* Animated background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-dark-bg via-dark-bg to-neon-blue/5" />
       
-      {/* 3D Scene */}
-      <div className="absolute inset-0 opacity-40">
-        <Scene3D />
+      {/* Subtle grid pattern */}
+      <div 
+        className="absolute inset-0 opacity-20" 
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}
+      />
+
+      {/* Floating geometric shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          animate={{
+            y: [0, -30, 0],
+            rotate: [0, 90, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute top-20 left-10 w-20 h-20 border border-neon-blue/20 rounded-lg"
+        />
+        <motion.div
+          animate={{
+            y: [0, 30, 0],
+            rotate: [0, -90, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute top-40 right-20 w-32 h-32 border border-neon-blue/10 rounded-full"
+        />
+        <motion.div
+          animate={{
+            y: [0, -20, 0],
+            x: [0, 20, 0],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute bottom-40 left-1/4 w-16 h-16 border border-neon-blue/15"
+        />
+        <motion.div
+          animate={{
+            y: [0, 25, 0],
+            rotate: [0, 180, 0],
+          }}
+          transition={{
+            duration: 22,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute bottom-20 right-1/4 w-24 h-24 border border-neon-blue/10 rounded-lg"
+        />
       </div>
 
       {/* Content */}
