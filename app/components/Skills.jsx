@@ -6,35 +6,49 @@ import {
   Code2, 
   Database, 
   Layout, 
-  Server, 
+  Server,
+  Coffee,
+  FileCode,
+  Globe,
+  Palette,
+  Table,
+  CircleDot,
+  Triangle,
+  Wind,
+  Circle,
+  Zap,
   Flame,
-  Box
+  Lightbulb,
+  BarChart3,
+  Binary,
+  Target,
+  HardDrive
 } from 'lucide-react'
 
 const skills = {
   Languages: [
-    { name: 'Java', icon: '☕' },
-    { name: 'JavaScript', icon: '🟨' },
-    { name: 'HTML', icon: '🌐' },
-    { name: 'CSS', icon: '🎨' },
-    { name: 'SQL', icon: '🗃️' },
+    { name: 'Java', Icon: Coffee },
+    { name: 'JavaScript', Icon: FileCode },
+    { name: 'HTML', Icon: Globe },
+    { name: 'CSS', Icon: Palette },
+    { name: 'SQL', Icon: Table },
   ],
   Frontend: [
-    { name: 'React.js', icon: '⚛️' },
-    { name: 'Next.js', icon: '▲' },
-    { name: 'Tailwind CSS', icon: '🎨' },
+    { name: 'React.js', Icon: CircleDot },
+    { name: 'Next.js', Icon: Triangle },
+    { name: 'Tailwind CSS', Icon: Wind },
   ],
   Backend: [
-    { name: 'Node.js', icon: '🟢' },
-    { name: 'Express.js', icon: '🚂' },
-    { name: 'Firebase', icon: '🔥' },
-    { name: 'Supabase', icon: '⚡' },
+    { name: 'Node.js', Icon: Circle },
+    { name: 'Express.js', Icon: Zap },
+    { name: 'Firebase', Icon: Flame },
+    { name: 'Supabase', Icon: Lightbulb },
   ],
   'Core CS': [
-    { name: 'Data Structures', icon: '📊' },
-    { name: 'Algorithms', icon: '🧮' },
-    { name: 'OOPs', icon: '🎯' },
-    { name: 'DBMS', icon: '💾' },
+    { name: 'Data Structures', Icon: BarChart3 },
+    { name: 'Algorithms', Icon: Binary },
+    { name: 'OOPs', Icon: Target },
+    { name: 'DBMS', Icon: HardDrive },
   ],
 }
 
@@ -86,27 +100,32 @@ export default function Skills() {
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                  {items.map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ 
-                        duration: 0.3, 
-                        delay: categoryIndex * 0.1 + index * 0.05 
-                      }}
-                      whileHover={{ 
-                        scale: 1.1, 
-                        y: -5,
-                        boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)'
-                      }}
-                      className="bg-dark-card rounded-lg p-4 text-center cursor-pointer transition-all duration-300 border border-transparent hover:border-neon-blue/30"
-                    >
-                      <div className="text-3xl mb-2">{skill.icon}</div>
-                      <div className="text-sm text-gray-300">{skill.name}</div>
-                    </motion.div>
-                  ))}
+                  {items.map((skill, index) => {
+                    const SkillIcon = skill.Icon
+                    return (
+                      <motion.div
+                        key={skill.name}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ 
+                          duration: 0.3, 
+                          delay: categoryIndex * 0.1 + index * 0.05 
+                        }}
+                        whileHover={{ 
+                          scale: 1.05, 
+                          y: -5,
+                          boxShadow: '0 0 20px rgba(0, 212, 255, 0.2)'
+                        }}
+                        className="bg-dark-card rounded-lg p-4 text-center cursor-pointer transition-all duration-300 border border-gray-800 hover:border-neon-blue/50"
+                      >
+                        <div className="flex justify-center mb-2">
+                          <SkillIcon className="text-neon-blue" size={28} strokeWidth={1.5} />
+                        </div>
+                        <div className="text-sm text-gray-300">{skill.name}</div>
+                      </motion.div>
+                    )
+                  })}
                 </div>
               </motion.div>
             )
