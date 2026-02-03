@@ -42,7 +42,7 @@ export default function About() {
               <div className="text-sm text-gray-400">LeetCode Problems</div>
             </div>
             <div className="text-center p-4 glass rounded-lg">
-              <div className="text-3xl font-bold text-neon-blue mb-1">2+</div>
+              <div className="text-3xl font-bold text-neon-blue mb-1">0</div>
               <div className="text-sm text-gray-400">Years Experience</div>
             </div>
           </div>

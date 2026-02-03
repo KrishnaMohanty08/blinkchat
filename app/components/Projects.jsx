@@ -7,21 +7,21 @@ import Button from './ui/Button'
 import { ExternalLink, Github } from 'lucide-react'
 
 const projects = [
-  {
-    title: 'KIIT Saathi',
-    description: 'Comprehensive student platform with study material and interview deadline tracker. Enhanced UI/UX and fixed critical forms, increasing successful submissions significantly.',
-    features: [
-      'Study material and interview deadline tracker modules',
-      'Improved homepage UI and overall usability',
-      'Fixed contact & feedback forms',
-      'Integrated backend APIs with caching',
-      '~40% improvement in load speed',
-    ],
-    tech: ['Next.js', 'React', 'Node.js', 'Database Integration'],
-    gradient: 'from-blue-500/20 to-cyan-500/20',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
+  // {
+  //   title: 'KIIT Saathi',
+  //   description: 'Comprehensive student platform with study material and interview deadline tracker. Enhanced UI/UX and fixed critical forms, increasing successful submissions significantly.',
+  //   features: [
+  //     'Study material and interview deadline tracker modules',
+  //     'Improved homepage UI and overall usability',
+  //     'Fixed contact & feedback forms',
+  //     'Integrated backend APIs with caching',
+  //     '~40% improvement in load speed',
+  //   ],
+  //   tech: ['Next.js', 'React', 'Node.js', 'Database Integration'],
+  //   gradient: 'from-blue-500/20 to-cyan-500/20',
+  //   liveUrl: '#',
+  //   githubUrl: '#',
+  // },
   {
     title: 'Arogyam',
     description: 'Real-time hospital bed availability system using Firebase. Built with performance in mind, utilizing SSR/ISR and component caching for optimal user experience.',
@@ -34,9 +34,50 @@ const projects = [
     ],
     tech: ['Next.js', 'React', 'Firebase', 'Firestore'],
     gradient: 'from-purple-500/20 to-pink-500/20',
-    liveUrl: '#',
-    githubUrl: '#',
+    githubUrl: "https://github.com/KrishnaMohanty08/arogyam",
+    liveUrl: "https://arogyam-lyart.vercel.app",
   },
+  {
+    title: 'Kiit TimeTable ',
+    description: 'Developed a simple yet powerful frontend parsing the pdf, excels and csv ,Calculated and Mapped the timetable and classes with roll numbers for 4 branches-time hospital bed availability system using Firebase. Built with performance in mind, utilizing SSR/ISR and component caching for optimal user experience.',
+    features: [
+      'Does not store any data on server for confidentiality and privacy',
+      'Real-time bed availability of classroom for different departments',
+      'Parsed the pdf, excels and csv to get the timetable data',
+      'Secure authentication with only valid for kiit students based login',
+    ],
+    tech: ['Next.js', ],
+    gradient: 'from-purple-500/20 to-pink-500/20',
+    githubUrl: "https://github.com/KrishnaMohanty08/arogyam",
+    liveUrl: "https://arogyam-lyart.vercel.app",
+  },
+  {
+      title: "Fammy",
+      description:
+        "A sleek Next.js-based web app for household task management. Integrated with Auth.js for secure authentication, it uses dynamic routing and server-side rendering for a smooth, secure experience.",
+      features: [
+        "User authentication with Auth.js",
+        "Dynamic routing for user-specific task views",
+      ],
+      tech: ["Next.js", "Auth.js", "Tailwind CSS"],
+      gradient: 'from-blue-500/20 to-cyan-500/20',
+      githubUrl: "https://github.com/KrishnaMohanty08/fammy",
+      liveUrl: "https://fammy.vercel.app/",
+    },
+    {
+      title: "LeetTrack (USC KIIT)",
+      description:
+        "A collaborative project under USC KIIT's leetTrack initiative. Promotes coding streaks and leaderboards with a dynamic UI built using HTML, CSS, and JavaScript.",
+      features: [
+        "Contributed as a frontend developer and designed Calender Events,Landing page", 
+        "Calender view for tracking coding streaks",
+      ],
+      tech: ["Next.js", "Prisma", "Clerk.js"],
+      gradient: 'from-green-500/20 to-teal-500/20',
+      githubUrl: "https://github.com/KrishnaMohanty08/leet-track",
+      liveUrl: "https://leet-track.netlify.app/",
+    },  
+    
 ]
 
 export default function Projects() {

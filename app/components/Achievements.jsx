@@ -20,13 +20,6 @@ const achievements = [
     bgColor: 'bg-neon-blue/10',
   },
   {
-    icon: TrendingUp,
-    title: 'Performance Optimization',
-    description: 'Up to 40% load time improvement',
-    color: 'text-green-400',
-    bgColor: 'bg-green-400/10',
-  },
-  {
     icon: Award,
     title: 'KIIT University',
     description: 'B.Tech CSE (2023-2027)',
