@@ -126,8 +126,8 @@ export default function Hero() {
             transition={{ delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
           >
-            <Button href="#projects" variant="primary">
-              View Projects <ArrowRight className="inline ml-2" size={20} />
+            <Button href="/Krishna_Resume.pdf" variant="primary" target="_blank" rel="noopener noreferrer">
+               Download CV<ArrowRight className="inline ml-2" size={20} />
             </Button>
             <Button href="#contact" variant="outline">
               Contact Me

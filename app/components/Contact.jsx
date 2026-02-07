@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 import SectionWrapper from './ui/SectionWrapper'
 import Button from './ui/Button'
 import { Github, Linkedin, Mail, Send, CheckCircle, XCircle } from 'lucide-react'
@@ -16,6 +17,13 @@ export default function Contact() {
   const [status, setStatus] = useState({ type: '', message: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  // Initialize EmailJS
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY)
+    }
+  }, [])
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
@@ -26,22 +34,26 @@ export default function Contact() {
     setStatus({ type: '', message: '' })
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        {
+          to_email: 'mohantykrishna57@gmail.com',
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone || 'Not provided',
+          message: formData.message,
+        }
+      )
 
-      const data = await response.json()
-
-      if (response.ok) {
-        setStatus({ type: 'success', message: data.message })
-        setFormData({ name: '', email: '', phone: '', message: '' })
-      } else {
-        setStatus({ type: 'error', message: data.message })
-      }
+      setStatus({ type: 'success', message: 'Message sent successfully! I will get back to you soon.' })
+      setFormData({ name: '', email: '', phone: '', message: '' })
     } catch (error) {
-      setStatus({ type: 'error', message: 'Failed to send message. Please try again.' })
+      console.error('EmailJS error:', error)
+      setStatus({ 
+        type: 'error', 
+        message: 'Failed to send message. Please check your email or try again later.' 
+      })
     } finally {
       setIsSubmitting(false)
     }
