@@ -19,6 +19,10 @@ export const metadata = {
   keywords: ['Krishna Mohanty', 'Full Stack Developer', 'Web Developer', 'KIIT University', 'React', 'Next.js', 'Node.js', 'Firebase', 'Portfolio'],
   authors: [{ name: 'Krishna Mohanty' }],
   creator: 'Krishna Mohanty',
+  icons: {
+    icon: '/favicon-icon.png',
+    apple: '/favicon-icon.png',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
